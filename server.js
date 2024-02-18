@@ -127,18 +127,91 @@ function addDepartment() {
 
 // Function to add a role
 function addRole() {
-    // You would prompt the user for role information here, similar to addDepartment
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'Enter the title of the role:'
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'Enter the salary for the role:'
+        },
+        {
+            type: 'input',
+            name: 'departmentId',
+            message: 'Enter the department ID for the role:'
+        }
+    ]).then((answer) => {
+        const query = 'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)';
+        db.query(query, [answer.title, answer.salary, answer.departmentId], (err, result) => {
+            if (err) throw err;
+            console.log('Role added successfully!');
+            // After adding the role, show the main menu again
+            mainMenu();
+        });
+    });
 }
 
 // Function to add an employee
 function addEmployee() {
-    // You would prompt the user for employee information here, similar to addDepartment
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstName',
+            message: 'Enter the first name of the employee:'
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'Enter the last name of the employee:'
+        },
+        {
+            type: 'input',
+            name: 'roleId',
+            message: 'Enter the role ID for the employee:'
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: 'Enter the manager ID for the employee (if applicable):'
+        }
+    ]).then((answer) => {
+        const query = 'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)';
+        db.query(query, [answer.firstName, answer.lastName, answer.roleId, answer.managerId], (err, result) => {
+            if (err) throw err;
+            console.log('Employee added successfully!');
+            // After adding the employee, show the main menu again
+            mainMenu();
+        });
+    });
 }
 
 // Function to update an employee's role
 function updateEmployeeRole() {
-    // You would prompt the user for employee and new role information here, similar to addDepartment
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'employeeId',
+            message: 'Enter the ID of the employee whose role you want to update:'
+        },
+        {
+            type: 'input',
+            name: 'roleId',
+            message: 'Enter the new role ID for the employee:'
+        }
+    ]).then((answer) => {
+        const query = 'UPDATE employee SET role_id = ? WHERE id = ?';
+        db.query(query, [answer.roleId, answer.employeeId], (err, result) => {
+            if (err) throw err;
+            console.log('Employee role updated successfully!');
+            // After updating the employee role, show the main menu again
+            mainMenu();
+        });
+    });
 }
+
 
 // Start the application
 mainMenu();
