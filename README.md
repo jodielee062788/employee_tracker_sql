@@ -18,6 +18,7 @@ The application empowers users to perform essential tasks, such as adding new em
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+- [Walkthrough Video](#walkthrough-video)
 - [License](#license)
 - [Questions](#questions)
 - [How To Contribute](#how-to-contribute)
@@ -46,7 +47,7 @@ To install and run the SVG Logo Maker, follow these steps:
     ```source db/schema.sql```
 
     ```source db/source.sql```
-    
+
 ## Usage
 To use this repository, follow these steps:
 
@@ -137,7 +138,9 @@ Choose the desired option to view departments, roles, or employees.
 
     ![Screenshot of total utilized budger per department option](./assets/15.png)
 
-7. Here's a walkthrough video on how to run the application [Walkthrough Video]().
+## Walkthrough Video
+
+Here's a walkthrough video on how to run the application [Walkthrough Video](https://drive.google.com/file/d/1l9KdItOCbQWeTtZm0_Fg57C6qA_gEn9y/view?usp=sharing).
 
 ## License
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for details.
