@@ -1,14 +1,23 @@
 const mysql = require('mysql2/promise');
 const inquirer = require('inquirer');
+require('dotenv').config();
 
 // Create a connection to the database
 async function createConnection() {
     return await mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'Kingdom_2788', // Replace 'password' with your MySQL password
+        password: process.env.DB_PASSWORD, // Replace 'password' with your MySQL password
         database: 'employee_db',
     });
+}
+
+// Function to display title/banner
+function displayTitle() {
+    console.log('--------------------------------------------------------');
+    console.log('        Health Hospital Employee Tracker System         ');
+    console.log('--------------------------------------------------------');
+    console.log();
 }
 
 // Function to display main menu
@@ -16,6 +25,7 @@ async function mainMenu() {
     const connection = await createConnection();
     try {
         while (true) {
+            displayTitle();
             const answers = await inquirer.prompt([
                 {
                     type: 'list',
