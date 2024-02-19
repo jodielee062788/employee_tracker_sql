@@ -41,6 +41,12 @@ To install and run the SVG Logo Maker, follow these steps:
 
     ``` mysql -u root -p```
 
+5. You can import the schema.sql and seeds.sql files provided in the repository to create and populate the necessary tables and data.
+
+    ```source db/schema.sql```
+
+    ```source db/source.sql```
+    
 ## Usage
 To use this repository, follow these steps:
 
@@ -66,6 +72,8 @@ To use this repository, follow these steps:
     - View total utilized budget of a department
 
     ![Screenshot of various options](./assets/1.png)
+
+    ![Screenshot of various options](./assets/1-2.png)
 
 3. Viewing Data: 
 Choose the desired option to view departments, roles, or employees.
@@ -101,12 +109,15 @@ Choose the desired option to view departments, roles, or employees.
     ![Screenshot of the update employee role option](./assets/8.png)
 
 6. Advanced Functionality (Optional):
-- Additional functionalities such as updating employee managers, viewing employees by manager or department, and deleting departments, roles, or employees may be available based on bonus criteria.
-- Choose the department to view its total utilized budget, which represents the combined salaries of all employees in that department.
+- Updating employee manager
 
     ![Screenshot of the update employee manager option](./assets/9.png)
 
+- View employees by manager
+
     ![Screenshot of the view employees by manager option](./assets/10.png)
+
+- View employees by department
 
     ![Screenshot of the view employees by department option](./assets/11.png)
 
@@ -121,6 +132,8 @@ Choose the desired option to view departments, roles, or employees.
 - Deleting employee
 
     ![Screenshot of the delete employee option](./assets/14.png)
+
+- Choose the department to view its total utilized budget, which represents the combined salaries of all employees in that department.
 
     ![Screenshot of total utilized budger per department option](./assets/15.png)
 
