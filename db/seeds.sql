@@ -14,12 +14,12 @@ VALUES ('Emergency Physician', 120000.00, 1),
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) 
 VALUES ('Alex', 'Chia', 1, NULL),
-       ('Jodie', 'Lee', 2, 1),
-       ('Alice', 'Johnson', 4, 1),
+       ('Jodie', 'Lee', 2, NULL),
+       ('Alice', 'Johnson', 4, NULL),
        ('Kim', 'Williams', 5, NULL),
        ('Christian', 'Brown', 5, 4),
-       ('Joshua', 'Davis', 4, NULL),
-       ('Seven', 'Taylor', 3, 6),
-       ('Rodie', 'Martinez', 3, 6),
-       ('Josie', 'Anderson', 2, NULL),
-       ('Loki', 'Wilson', 5, 9);
+       ('Joshua', 'Davis', 4, 3),
+       ('Seven', 'Taylor', 3, NULL),
+       ('Rodie', 'Martinez', 3, 7),
+       ('Josie', 'Anderson', 2, 2),
+       ('Loki', 'Wilson', 5, 3);
