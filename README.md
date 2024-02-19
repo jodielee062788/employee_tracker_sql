@@ -47,8 +47,6 @@ To use this repository, follow these steps:
 1. Run the application using Node.js
 
     ```node server.js```
-  
-    ![Screenshot of executing node server.js command](./images/2.png)
 
 2. Upon starting the application, you'll be presented with a main menu displaying various options:
  - View all departments
@@ -67,7 +65,7 @@ To use this repository, follow these steps:
     - Delete employee
     - View total utilized budget of a department
 
-    ![Screenshot of the prompts](./images/2.png)
+    ![Screenshot of various options](./images/2.png)
 
 3. Viewing Data: 
 Choose the desired option to view departments, roles, or employees.
