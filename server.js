@@ -95,7 +95,7 @@ async function mainMenu() {
                     await viewDepartmentBudget(connection);
                     break;
                 case 'Exit':
-                    console.log('Goodbye!');
+                    console.log('Goodbye! Thank you for using the program.');
                     return;
                 default:
                     console.log('Invalid choice');
@@ -128,7 +128,7 @@ async function viewEmployees(connection) {
     const [rows] = await connection.query(`
         SELECT 
             employee.id, employee.first_name, employee.last_name, 
-            role.role_title AS job_title, department.department_name, role.role_salary, 
+            role.role_title AS role_title, department.department_name, role.role_salary, 
             CONCAT(manager.first_name, ' ', manager.last_name) AS manager
         FROM employee
         LEFT JOIN role ON employee.role_id = role.id
