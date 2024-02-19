@@ -37,18 +37,18 @@ To install and run the SVG Logo Maker, follow these steps:
 
     ```npm install```
 
-    ![Screenshot of executing npm install command](./images/1.png)
-
 4. Set up your MySQL database. Ensure you have MySQL installed and running on your local machine. You can import the schema.sql and seeds.sql files provided in the repository to create and populate the necessary tables and data.
+
+    ``` mysql -u root -p```
 
 ## Usage
 To use this repository, follow these steps:
 
 1. Run the application using Node.js
 
-    ```node index.js```
+    ```node server.js```
   
-    ![Screenshot of executing node index.js command](./images/2.png)
+    ![Screenshot of executing node server.js command](./images/2.png)
 
 2. Upon starting the application, you'll be presented with a main menu displaying various options:
  - View all departments

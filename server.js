@@ -17,6 +17,7 @@ async function createConnection() {
 // Function to display title/banner
 function displayTitle() {
     // Display a title/banner for the application
+    console.log();
     console.log('--------------------------------------------------------');
     console.log('        Health Hospital Employee Tracker System         ');
     console.log('--------------------------------------------------------');
