@@ -65,20 +65,32 @@ To use this repository, follow these steps:
     - Delete employee
     - View total utilized budget of a department
 
-    ![Screenshot of various options](./images/2.png)
+    ![Screenshot of various options](./assets/1.png)
 
 3. Viewing Data: 
 Choose the desired option to view departments, roles, or employees.
 - For departments: A formatted table will display department names and IDs.
+
+    ![Screenshot of the view all departments option](./assets/2.png)
+
 -  For roles: Job titles, role IDs, associated departments, and salaries will be shown.
+
+    ![Screenshot of the view all roles option](./assets/3.png)
+
 - For employees: Employee data including IDs, names, job titles, departments, salaries, and managers will be presented.
 
-    ![Screenshot of the generated SVG file](./images/3.png)
+    ![Screenshot of the view all employees option](./assets/4.png)
 
 4. Adding Data:
 - Select the option to add a department, role, or employee.
 - Follow the prompts to enter necessary information such as department name, role details, or employee details.
 - The entered data will be added to the database.
+
+    ![Screenshot of the add departments option](./assets/5.png)
+
+    ![Screenshot of the add roles option](./assets/6.png)
+
+    ![Screenshot of the view all departments option](./assets/7.png)
 
 5. Updating an Employee Role:
 - Choose the option to update an employee role.
@@ -86,11 +98,33 @@ Choose the desired option to view departments, roles, or employees.
 - Choose the new role for the selected employee.
 - The employee's role will be updated in the database.
 
+    ![Screenshot of the update employee role option](./assets/8.png)
+
 6. Advanced Functionality (Optional):
 - Additional functionalities such as updating employee managers, viewing employees by manager or department, and deleting departments, roles, or employees may be available based on bonus criteria.
 - Choose the department to view its total utilized budget, which represents the combined salaries of all employees in that department.
 
-7. Here's a walkthrough video on how to run the application [Walkthrough Video](https://drive.google.com/file/d/1L-y8TNoCY-XDN2JK59fodhw69tHE2woE/view?usp=sharing).
+    ![Screenshot of the update employee manager option](./assets/9.png)
+
+    ![Screenshot of the view employees by manager option](./assets/10.png)
+
+    ![Screenshot of the view employees by department option](./assets/11.png)
+
+- Deleting department
+
+    ![Screenshot of the delete department option](./assets/12.png)
+
+- Deleting role
+
+    ![Screenshot of the delete role option](./assets/13.png)
+
+- Deleting employee
+
+    ![Screenshot of the delete employee option](./assets/14.png)
+
+    ![Screenshot of total utilized budger per department option](./assets/15.png)
+
+7. Here's a walkthrough video on how to run the application [Walkthrough Video]().
 
 ## License
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for details.
