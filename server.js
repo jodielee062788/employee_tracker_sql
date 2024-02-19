@@ -29,6 +29,13 @@ async function mainMenu() {
                         'Add a role',
                         'Add an employee',
                         'Update an employee role',
+                        'Update employee manager',
+                        'View employees by manager',
+                        'View employees by department',
+                        'Delete department',
+                        'Delete role',
+                        'Delete employee',
+                        'View total utilized budget of a department',
                         'Exit'
                     ]
                 }
@@ -55,6 +62,27 @@ async function mainMenu() {
                     break;
                 case 'Update an employee role':
                     await updateEmployeeRole(connection);
+                    break;
+                case 'Update employee manager':
+                    await updateEmployeeManager(connection);
+                    break;
+                case 'View employees by manager':
+                    await viewEmployeesByManager(connection);
+                    break;
+                case 'View employees by department':
+                    await viewEmployeesByDepartment(connection);
+                    break;
+                case 'Delete department':
+                    await deleteDepartment(connection);
+                    break;
+                case 'Delete role':
+                    await deleteRole(connection);
+                    break;
+                case 'Delete employee':
+                    await deleteEmployee(connection);
+                    break;
+                case 'View total utilized budget of a department':
+                    await viewDepartmentBudget(connection);
                     break;
                 case 'Exit':
                     console.log('Goodbye!');
@@ -241,6 +269,155 @@ async function updateEmployeeRole(connection) {
     console.log('Employee role updated successfully!');
 }
 
+// Update Employee Managers
+async function updateEmployeeManager(connection) {
+    const [employees] = await connection.query('SELECT id, CONCAT(first_name, " ", last_name) AS full_name FROM employee');
+    const employeeChoices = employees.map(employee => ({
+        name: employee.full_name,
+        value: employee.id
+    }));
+
+    const answers = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'employeeId',
+            message: 'Select the employee whose manager you want to update:',
+            choices: employeeChoices
+        },
+        {
+            type: 'list',
+            name: 'managerId',
+            message: 'Select the new manager for the employee:',
+            choices: employeeChoices
+        }
+    ]);
+
+    await connection.execute('UPDATE employee SET manager_id = ? WHERE id = ?', [answers.managerId, answers.employeeId]);
+    console.log('Employee manager updated successfully!');
+}
+
+// View Employees by Manager
+async function viewEmployeesByManager(connection) {
+    const [managers] = await connection.query('SELECT id, CONCAT(first_name, " ", last_name) AS full_name FROM employee WHERE manager_id IS NULL');
+    const managerChoices = managers.map(manager => ({
+        name: manager.full_name,
+        value: manager.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'managerId',
+        message: 'Select a manager to view their employees:',
+        choices: managerChoices
+    });
+
+    const [rows] = await connection.query(`
+        SELECT id, CONCAT(first_name, " ", last_name) AS full_name 
+        FROM employee 
+        WHERE manager_id = ?
+    `, [answer.managerId]);
+    console.table(rows);
+}
+
+// View Employees by Department
+async function viewEmployeesByDepartment(connection) {
+    const [departments] = await connection.query('SELECT id, department_name FROM department');
+    const departmentChoices = departments.map(department => ({
+        name: department.department_name,
+        value: department.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'departmentId',
+        message: 'Select a department to view its employees:',
+        choices: departmentChoices
+    });
+
+    const [rows] = await connection.query(`
+        SELECT e.id, CONCAT(e.first_name, " ", e.last_name) AS full_name 
+        FROM employee e
+        INNER JOIN role r ON e.role_id = r.id
+        WHERE r.department_id = ?
+    `, [answer.departmentId]);
+    console.table(rows);
+}
+
+// Delete Department
+async function deleteDepartment(connection) {
+    const [departments] = await connection.query('SELECT id, department_name FROM department');
+    const departmentChoices = departments.map(department => ({
+        name: department.department_name,
+        value: department.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'departmentId',
+        message: 'Select a department to delete:',
+        choices: departmentChoices
+    });
+
+    await connection.execute('DELETE FROM department WHERE id = ?', [answer.departmentId]);
+    console.log('Department deleted successfully!');
+}
+
+// Delete Role
+async function deleteRole(connection) {
+    const [roles] = await connection.query('SELECT id, role_title FROM role');
+    const roleChoices = roles.map(role => ({
+        name: role.role_title,
+        value: role.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'roleId',
+        message: 'Select a role to delete:',
+        choices: roleChoices
+    });
+
+    await connection.execute('DELETE FROM role WHERE id = ?', [answer.roleId]);
+    console.log('Role deleted successfully!');
+}
+
+// Delete Employee
+async function deleteEmployee(connection) {
+    const [employees] = await connection.query('SELECT id, CONCAT(first_name, " ", last_name) AS full_name FROM employee');
+    const employeeChoices = employees.map(employee => ({
+        name: employee.full_name,
+        value: employee.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'employeeId',
+        message: 'Select an employee to delete:',
+        choices: employeeChoices
+    });
+
+    await connection.execute('DELETE FROM employee WHERE id = ?', [answer.employeeId]);
+    console.log('Employee deleted successfully!');
+}
+
+// View Total Utilized Budget of a Department
+async function viewDepartmentBudget(connection) {
+    const [departments] = await connection.query('SELECT id, department_name FROM department');
+    const departmentChoices = departments.map(department => ({
+        name: department.department_name,
+        value: department.id
+    }));
+
+    const answer = await inquirer.prompt({
+        type: 'list',
+        name: 'departmentId',
+        message: 'Select a department to view its total utilized budget:',
+        choices: departmentChoices
+    });
+
+    const [result] = await connection.query('SELECT SUM(r.role_salary) AS total_budget FROM employee e JOIN role r ON e.role_id = r.id WHERE r.department_id = ?', [answer.departmentId]);
+    console.log(`Total Utilized Budget of ${departmentChoices.find(dep => dep.value === answer.departmentId).name}: $${result[0].total_budget}`);
+}
 
 // Start the application
 mainMenu();
